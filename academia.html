@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pulse Fit Academy</title>
+  <link rel="stylesheet" href="academia.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">ACADEMIA UDF</div>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Aulas</a></li>
+          <li><a href="#imc">Calculadora IMC</a></li>
+          <li><a href="#gallery">Galeria</a></li>
+          <li><a href="#contact">Inscreva-se</a></li>
+        </ul>
+      </nav>
+      <button class="btn enroll" id="openEnroll">Quero me inscrever</button>
+      <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <picture>
+        <img src="imagens/pessoas_treinando.png" alt="Pessoas se exercitando na academia" />
+      </picture>
+      <div class="hero-content">
+        <h1>Desperte sua melhor versão</h1>
+        <p>Treinos personalizados, aulas coletivas e acompanhamento profissional.</p>
+        <a class="btn primary" href="#contact">Matricule-se</a>
+      </div>
+    </section>
+
+    <section id="about" class="container about">
+      <h2>Sobre a Academia UDF</h2>
+      <p>Academia moderna com foco em saúde, performance e comunidade. Oferecemos planos flexíveis, treinadores certificados e aulas para todos os níveis.</p>
+    </section>
+
+    <section id="services" class="container services">
+      <h2>Serviços</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Treino Personalizado</h3>
+          <p>Avaliação física e plano individualizado.</p>
+        </article>
+        <article class="card">
+          <h3>Aulas Coletivas</h3>
+          <p>HIIT, Yoga, Spinning, e mais.</p>
+        </article>
+        <article class="card">
+          <h3>Acompanhamento Nutricional</h3>
+          <p>Orientação para alimentação e metas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="imc" class="container imc-section">
+      <h2>Calculadora de IMC</h2>
+      <form id="imcForm" class="imc-form" novalidate>
+        <label>Altura (m)
+          <input type="number" step="0.01" id="height" name="height" required />
+        </label>
+        <label>Peso (kg)
+          <input type="number" step="0.1" id="weight" name="weight" required />
+        </label>
+        <button type="submit" class="btn">Calcular IMC</button>
+      </form>
+      <div id="imcResult" class="imc-result" aria-live="polite"></div>
+    </section>
+
+    <section id="gallery" class="container gallery">
+      <h2>Galeria</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <img src="imagens/zumba.png" alt="Zumba" />
+        <img src="imagens/academia.png" alt="Academia" />
+        <img src="imagens/personal_trainer.png" alt="Personal trainer" />
+      </div>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h2>Inscrição</h2>
+      <form id="enrollForm" class="enroll-form" novalidate>
+        <div class="grid-two">
+          <label>Nome completo
+            <input type="text" id="fullName" name="fullName" required minlength="3" />
+          </label>
+          <label>Data de nascimento
+            <input type="date" id="birth" name="birth" required />
+          </label>
+        </div>
+        <label>E-mail
+          <input type="email" id="email" name="email" required />
+        </label>
+        <div class="grid-two">
+          <label>Telefone
+            <input type="tel" id="phone" name="phone" />
+          </label>
+          <label>Plano
+            <select id="plan" name="plan" required>
+              <option value="">Escolha um plano</option>
+              <option value="basic">Básico</option>
+              <option value="plus">Plus</option>
+              <option value="pro">Pro</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <input type="checkbox" id="terms" name="terms" required />
+          Aceito termos e políticas
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Enviar inscrição</button>
+          <button type="reset" class="btn">Limpar</button>
+        </div>
+        <div id="enrollMessage" class="form-message" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section id="plans" class="container plans">
+  <h2>Planos disponíveis</h2>
+  <div class="plan-list">
+    <article class="plan-card">
+      <h3>Básico</h3>
+      <p>R$ 99/mês — Acesso em horário comercial</p>
+      <button onclick="addToCart('Básico', 99)">Adicionar ao carrinho</button>
+    </article>
+    <article class="plan-card">
+      <h3>Plus</h3>
+      <p>R$ 149/mês — Acesso integral + aulas coletivas</p>
+      <button onclick="addToCart('Plus', 149)">Adicionar ao carrinho</button>
+    </article>
+    <article class="plan-card">
+      <h3>Pro</h3>
+      <p>R$ 199/mês — Tudo incluso + personal trainer</p>
+      <button onclick="addToCart('Pro', 199)">Adicionar ao carrinho</button>
+    </article>
+  </div>
+</section>
+
+<section id="cart" class="container cart">
+  <h2>Seu carrinho</h2>
+  <ul id="cartItems"></ul>
+  <p id="cartTotal">Total: R$ 0</p>
+  <button onclick="clearCart()">Limpar carrinho</button>
+</section>
+   
+  </main>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Academia UDF — Todos os direitos reservados.</p>
+    <nav aria-label="Redes sociais">
+      <ul class="social-icons">
+        <li>
+          <a href="#" target="_blank" aria-label="Instagram">
+            <img src="imagens/instagram.png" alt="Instagram" width="24" height="24" />
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" aria-label="Whatsapp">
+            <img src="imagens/whatsapp.png" alt="Whatsapp" width="24" height="24" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+
+  <script src="academia.js"></script>
+</body>
+</html>
